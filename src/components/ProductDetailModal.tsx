@@ -1,6 +1,7 @@
 'use client'
 import Modal from "./Modal";
 import { ChevronLeft, ChevronRight, Heart, Package, RotateCcw, Share2, Shield, ShoppingCart, Star, Truck } from 'lucide-react';
+import Image from "next/image";
 import { useState} from 'react';
 
 const ProductDetailModal = ({ product, onClose }) => {
@@ -28,11 +29,12 @@ const ProductDetailModal = ({ product, onClose }) => {
             <div className="space-y-4">
               <div className="relative group">
                 <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
-                  <img 
-                    src={images[currentImageIndex]} 
-                    alt={product.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+                <Image
+    src={images[currentImageIndex]}
+    alt={product.title}
+    fill
+    className="object-cover transition-transform duration-300 group-hover:scale-105"
+  />
                 </div>
                 
                 {images.length > 1 && (
@@ -66,11 +68,12 @@ const ProductDetailModal = ({ product, onClose }) => {
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
-                      <img 
-                        src={image} 
-                        alt={`${product.title} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
+                      <Image
+    src={image}
+    alt={`${product.title} ${index + 1}`}
+    fill
+    className="object-cover"
+  />
                     </button>
                   ))}
                 </div>

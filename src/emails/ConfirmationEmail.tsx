@@ -5,7 +5,6 @@ import {
   Head,
   Hr,
   Html,
-  Img,
   Preview,
   Section,
   Text,
@@ -14,10 +13,6 @@ import {
 interface ConfirmationEmailProps {
   email: string;
 }
-
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : '';
 
 export const ConfirmationEmail = ({ email }: ConfirmationEmailProps) => (
   <Html>
@@ -71,27 +66,12 @@ const container = {
   maxWidth: '580px',
 };
 
-const logo = {
-  margin: '0 auto',
-  display: 'block',
-};
 
 const paragraph = {
   fontSize: '16px',
   lineHeight: '26px',
   color: '#333',
 };
-
-const featureList = {
-  fontSize: '16px',
-  lineHeight: '26px',
-  color: '#333',
-  backgroundColor: '#f8fafc',
-  padding: '20px',
-  borderRadius: '8px',
-  border: '1px solid #e2e8f0',
-};
-
 const btnContainer = {
   textAlign: 'center' as const,
   margin: '32px 0',

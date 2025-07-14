@@ -5,7 +5,6 @@ import {
   Heading,
   Hr,
   Html,
-  Img,
   Preview,
   Section,
   Text,
@@ -15,9 +14,6 @@ interface OTPEmailProps {
   otp: string;
 }
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : '';
 
 export default function OTPEmail({ otp }: OTPEmailProps) {
   return (
@@ -106,9 +102,6 @@ const upperSection = {
   padding: '25px 35px' 
 };
 
-const lowerSection = { 
-  padding: '25px 35px' 
-};
 
 const footerText = {
   ...text,
@@ -148,9 +141,4 @@ const verificationSection = {
 const mainText = { 
   ...text, 
   marginBottom: '14px' 
-};
-
-const cautionText = { 
-  ...text, 
-  margin: '0px' 
 };

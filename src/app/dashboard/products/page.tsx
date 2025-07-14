@@ -1,6 +1,7 @@
 'use client';
 
 import ProductDetailModal from '@/components/ProductDetailModal';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 // Define interfaces for type safety
@@ -174,7 +175,7 @@ export default function ProductsPage() {
       categories,
       priceRanges,
       averageRating: (totalRating / products.length).toFixed(2),
-      
+
       totalProducts: products.length,
     });
   };
@@ -261,11 +262,13 @@ export default function ProductsPage() {
                   onClick={() => handleProductClick(product)}
                 >
                   <TableCell>
-                    <img 
-                      src={product.thumbnail} 
-                      alt={product.title} 
-                      className="w-12 h-12 rounded object-cover" 
-                    />
+                  <Image
+  src={product.thumbnail}
+  alt={product.title}
+  width={48}
+  height={48}
+  className="w-12 h-12 rounded object-cover"
+/>
                   </TableCell>
                   <TableCell className="font-medium">{product.title}</TableCell>
                   <TableCell>{product.category}</TableCell>

@@ -1,5 +1,5 @@
 'use client'
-import { Home, Package, Settings, LogOut, Menu, X } from 'lucide-react';
+import { Home, Package, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
