@@ -27,43 +27,26 @@ export const ConfirmationEmail = ({ email }: ConfirmationEmailProps) => (
         Welcome to myjobb AI - Your AI-powered job search companion
       </Preview>
       <Container style={container}>
-        <Img
-          src={`${baseUrl}/static/myjobb-logo.png`}
-          width="170"
-          height="50"
-          alt="myjobb AI"
-          style={logo}
-        />
+       
         <Text style={paragraph}>Hi {email},</Text>
         <Text style={paragraph}>
-          Welcome to myjobb AI! 🎉 Your email has been successfully verified and 
-          you now have access to our AI-powered job search platform.
+          Welcome! 🎉 Your email has been successfully verified and 
+          you now have access to platform.
         </Text>
-        <Text style={paragraph}>
-          Get ready to discover:
-        </Text>
-        <Text style={featureList}>
-          • AI-powered job matching and recommendations<br />
-          • Smart resume optimization and analysis<br />
-          • Interview preparation and practice tools<br />
-          • Career insights and market trends
-        </Text>
+        
         <Section style={btnContainer}>
           <Button style={button} href="https://myjobb.ai/dashboard">
             Get started
           </Button>
         </Section>
         <Text style={paragraph}>
-          Need help? Check out our getting started guide or contact our support team.
-        </Text>
-        <Text style={paragraph}>
           Best regards,
           <br />
-          The myjobb AI team
+          The Ass team
         </Text>
         <Hr style={hr} />
         <Text style={footer}>
-          © 2025 myjobb AI. All rights reserved.
+          © 2025 Ass. All rights reserved.
         </Text>
       </Container>
     </Body>

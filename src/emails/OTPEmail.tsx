@@ -28,17 +28,12 @@ export default function OTPEmail({ otp }: OTPEmailProps) {
         <Container style={container}>
           <Section style={coverSection}>
             <Section style={imageSection}>
-              <Img
-                src={`${baseUrl}/static/myjobb-logo.png`}
-                width="160"
-                height="40"
-                alt="myjobb AI Logo"
-              />
+              
             </Section>
             <Section style={upperSection}>
               <Heading style={h1}>Verify your email address</Heading>
               <Text style={mainText}>
-                Thanks for starting the new myjobb AI account creation process. We
+                Thanks for starting the new account creation process. We
                 want to make sure it's really you. Please enter the following
                 verification code when prompted. If you don't want to
                 create an account, you can ignore this message.
@@ -52,16 +47,10 @@ export default function OTPEmail({ otp }: OTPEmailProps) {
               </Section>
             </Section>
             <Hr />
-            <Section style={lowerSection}>
-              <Text style={cautionText}>
-                myjobb AI will never email you and ask you to disclose
-                or verify your password, credit card, or banking account number.
-              </Text>
-            </Section>
           </Section>
           <Text style={footerText}>
-            This message was produced and distributed by myjobb AI.
-            © 2025, myjobb AI. All rights reserved.
+            This message was produced and distributed by Ass.
+            © 2025, Ass. All rights reserved.
           </Text>
         </Container>
       </Body>

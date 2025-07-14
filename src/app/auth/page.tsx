@@ -20,6 +20,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, Clock, Mail, CheckCircle } from 'lucide-react';
 
 export default function AuthPage() {
+
   const [step, setStep] = useState<'email' | 'otp'>('email');
   const [email, setEmail] = useState<string>('');
   const [otp, setOtp] = useState<string>('');
@@ -37,6 +38,7 @@ export default function AuthPage() {
       return () => clearTimeout(timer);
     }
   }, [resendCooldown]);
+
 
   const handleSendOTP = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -148,7 +150,7 @@ export default function AuthPage() {
             <Mail className="h-6 w-6 text-blue-600" />
           </div>
           <CardTitle className="text-2xl font-bold text-gray-900">
-            Welcome to myjobb AI
+            Welcome
           </CardTitle>
           <CardDescription className="text-gray-600">
             {step === 'email'
@@ -233,7 +235,7 @@ export default function AuthPage() {
 
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-600">Didn't receive the code?</span>
+                  <span className="text-gray-600"></span>
                   <Button
                     type="button"
                     variant="link"

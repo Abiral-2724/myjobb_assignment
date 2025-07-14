@@ -1,5 +1,6 @@
 'use client';
 
+import ProductDetailModal from '@/components/ProductDetailModal';
 import { useState, useEffect } from 'react';
 
 // Define interfaces for type safety
@@ -124,161 +125,6 @@ const TableCell = ({ children, className = "" }: { children: React.ReactNode; cl
   </td>
 );
 
-// Modal Component
-const Modal = ({ isOpen, onClose, children }: { isOpen: boolean; onClose: () => void; children: React.ReactNode }) => {
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto relative">
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl z-10"
-        >
-          ×
-        </button>
-        {children}
-      </div>
-    </div>
-  );
-};
-
-// Product Detail Modal Component
-const ProductDetailModal = ({ product, onClose }: { product: Product; onClose: () => void }) => {
-  return (
-    <Modal isOpen={true} onClose={onClose}>
-      <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Product Images */}
-          <div>
-            <img 
-              src={product.thumbnail} 
-              alt={product.title}
-              className="w-full h-64 object-cover rounded-lg mb-4"
-            />
-            {product.images && product.images.length > 1 && (
-              <div className="grid grid-cols-3 gap-2">
-                {product.images.slice(1, 4).map((image, index) => (
-                  <img 
-                    key={index}
-                    src={image} 
-                    alt={`${product.title} ${index + 1}`}
-                    className="w-full h-20 object-cover rounded"
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Product Details */}
-          <div className="space-y-4">
-            <div>
-              <h2 className="text-2xl font-bold mb-2">{product.title}</h2>
-              <p className="text-gray-600 mb-4">{product.description}</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <span className="font-semibold">Brand:</span> {product.brand}
-              </div>
-              <div>
-                <span className="font-semibold">Category:</span> {product.category}
-              </div>
-              <div>
-                <span className="font-semibold">SKU:</span> {product.sku}
-              </div>
-              <div>
-                <span className="font-semibold">Stock:</span> {product.stock}
-              </div>
-            </div>
-
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <div className="flex justify-between items-center mb-2">
-                <span className="text-3xl font-bold">${product.price}</span>
-                <span className="text-green-600 font-semibold">{product.discountPercentage}% OFF</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-yellow-500">★</span>
-                <span className="ml-1 font-semibold">{product.rating}</span>
-                <span className="ml-2 text-gray-600">({product.reviews?.length || 0} reviews)</span>
-              </div>
-            </div>
-
-            <div>
-              <span className="font-semibold">Status:</span> 
-              <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
-                product.availabilityStatus === 'In Stock' 
-                  ? 'bg-green-100 text-green-800' 
-                  : 'bg-red-100 text-red-800'
-              }`}>
-                {product.availabilityStatus}
-              </span>
-            </div>
-
-            {product.tags && product.tags.length > 0 && (
-              <div>
-                <span className="font-semibold">Tags:</span>
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {product.tags.map((tag, index) => (
-                    <span key={index} className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Additional Information */}
-        <div className="mt-6 space-y-4">
-          {product.dimensions && (
-            <div>
-              <h3 className="font-semibold mb-2">Dimensions & Weight</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                <div>Width: {product.dimensions.width}"</div>
-                <div>Height: {product.dimensions.height}"</div>
-                <div>Depth: {product.dimensions.depth}"</div>
-                <div>Weight: {product.weight} lbs</div>
-              </div>
-            </div>
-          )}
-
-          <div>
-            <h3 className="font-semibold mb-2">Shipping & Returns</h3>
-            <div className="space-y-2 text-sm">
-              <p><span className="font-medium">Shipping:</span> {product.shippingInformation}</p>
-              <p><span className="font-medium">Return Policy:</span> {product.returnPolicy}</p>
-              <p><span className="font-medium">Warranty:</span> {product.warrantyInformation}</p>
-              <p><span className="font-medium">Minimum Order:</span> {product.minimumOrderQuantity}</p>
-            </div>
-          </div>
-
-          {product.reviews && product.reviews.length > 0 && (
-            <div>
-              <h3 className="font-semibold mb-2">Recent Reviews</h3>
-              <div className="space-y-3 max-h-48 overflow-y-auto">
-                {product.reviews.slice(0, 3).map((review, index) => (
-                  <div key={index} className="border-l-4 border-blue-200 pl-4">
-                    <div className="flex items-center mb-1">
-                      <span className="text-yellow-500">★</span>
-                      <span className="ml-1 font-semibold">{review.rating}</span>
-                      <span className="ml-2 text-sm text-gray-600">by {review.reviewerName}</span>
-                    </div>
-                    <p className="text-sm text-gray-700">{review.comment}</p>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {new Date(review.date).toLocaleDateString()}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </Modal>
-  );
-};
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -328,6 +174,7 @@ export default function ProductsPage() {
       categories,
       priceRanges,
       averageRating: (totalRating / products.length).toFixed(2),
+      
       totalProducts: products.length,
     });
   };
@@ -346,7 +193,7 @@ export default function ProductsPage() {
 
   return (
     <div className="p-6 space-y-6">
-      <h1 className="text-3xl font-bold">Products Dashboard</h1>
+      <h1 className="text-3xl font-bold ml-9">Products Dashboard</h1>
       
       {/* Analytics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -372,6 +219,7 @@ export default function ProductsPage() {
           <CardHeader>
             <CardTitle>Categories</CardTitle>
           </CardHeader>
+
           <CardContent>
             <p className="text-2xl font-bold">{Object.keys(analytics.categories || {}).length}</p>
           </CardContent>
@@ -395,6 +243,7 @@ export default function ProductsPage() {
         </CardHeader>
         <CardContent>
           <Table>
+
             <TableHeader>
               <TableRow>
                 <TableHead>Image</TableHead>
@@ -431,8 +280,10 @@ export default function ProductsPage() {
       </Card>
 
       {/* Product Detail Modal */}
+
       {selectedProduct && (
-        <ProductDetailModal 
+        <ProductDetailModal
+
           product={selectedProduct} 
           onClose={handleCloseModal}
         />
