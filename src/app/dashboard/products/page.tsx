@@ -140,7 +140,7 @@ export default function ProductsPage() {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  });
 
   const fetchProducts = async (): Promise<void> => {
     try {

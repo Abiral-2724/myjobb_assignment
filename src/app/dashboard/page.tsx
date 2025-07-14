@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { TrendingUp, Package, DollarSign, Star, BarChart3, PieChart, Activity } from 'lucide-react';
 import { PieChart as RechartsPieChart, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ScatterChart, Scatter, Area, AreaChart, Pie } from 'recharts';
+import Image from 'next/image';
 
 // Type definitions
 interface Product {
@@ -553,11 +554,13 @@ export default function ProductAnalyticsDashboard() {
           <div className="space-y-4">
             {dashboardData.recentProducts.map((product: Product) => (
               <div key={product.id} className="flex items-center space-x-4 p-3 border rounded-lg hover:bg-gray-50">
-                <img 
-                  src={product.thumbnail} 
-                  alt={product.title}
-                  className="w-16 h-16 rounded object-cover"
-                />
+                <Image
+  src={product.thumbnail}
+  alt={product.title}
+  width={64} 
+  height={64} 
+  className="rounded object-cover"
+/>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium truncate">{product.title}</p>
                   <p className="text-xs text-muted-foreground capitalize">{product.category}</p>
