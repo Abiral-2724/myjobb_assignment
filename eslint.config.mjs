@@ -17,6 +17,7 @@ const eslintConfig = [
       "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
       "@typescript-eslint/ban-ts-comment": "off",
       "react-hooks/exhaustive-deps": "off",// Disable the rule globally
+      "react/no-unescaped-entities": "off",
     },
   },
 ];
