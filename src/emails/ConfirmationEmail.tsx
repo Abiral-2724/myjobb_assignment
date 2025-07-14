@@ -30,7 +30,7 @@ export const ConfirmationEmail = ({ email }: ConfirmationEmailProps) => (
         </Text>
         
         <Section style={btnContainer}>
-          <Button style={button} href="https://myjobb.ai/dashboard">
+          <Button style={button} href="https://myjobb-assignment-navy.vercel.app/dashboard">
             Get started
           </Button>
         </Section>

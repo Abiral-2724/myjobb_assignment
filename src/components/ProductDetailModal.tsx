@@ -1,84 +1,86 @@
 'use client'
 import Modal from "./Modal";
 import { ChevronLeft, ChevronRight, Heart, Package, RotateCcw, Share2, Shield, ShoppingCart, Star, Truck } from 'lucide-react';
-import Image from "next/image";
-import { useState} from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 
 const ProductDetailModal = ({ product, onClose }) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [quantity, setQuantity] = useState(1);
-    const [isLiked, setIsLiked] = useState(false);
-    
-    const images = product.images || [product.thumbnail];
-    
-    const nextImage = () => {
-      setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    };
-    
-    const prevImage = () => {
-      setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-    };
-    
-    const originalPrice = product.price / (1 - product.discountPercentage / 100);
-    
-    return (
-      <Modal isOpen={true} onClose={onClose}>
-        <div className="p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-            {/* Enhanced Product Images */}
-            <div className="space-y-4">
-              <div className="relative group">
-                <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
-                <Image
-    src={images[currentImageIndex]}
-    alt={product.title}
-    fill
-    className="object-cover transition-transform duration-300 group-hover:scale-105"
-  />
-                </div>
-                
-                {images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
-                    >
-                      <ChevronLeft size={20} />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
-                    >
-                      <ChevronRight size={20} />
-                    </button>
-                  </>
-                )}
-              </div>
-              
-              {images.length > 1 && (
-                <div className="grid grid-cols-4 gap-2">
-                  {images.map((image, index) => (
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [isLiked, setIsLiked] = useState(false);
 
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                        index === currentImageIndex 
-                          ? 'border-blue-500 ring-2 ring-blue-200' 
-                          : 'border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      <Image
-    src={image}
-    alt={`${product.title} ${index + 1}`}
-    fill
-    className="object-cover"
-  />
-                    </button>
-                  ))}
-                </div>
+  const images = product.images || [product.thumbnail];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const originalPrice = product.price / (1 - product.discountPercentage / 100);
+
+  return (
+    <Modal isOpen={true} onClose={onClose}>
+      <div className="p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          
+          {/* Product Images */}
+          <div className="space-y-4">
+            <div className="relative group">
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-gray-100">
+                <Image
+                  src={images[currentImageIndex]}
+                  alt={product.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-gray-50"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </>
               )}
             </div>
+
+            {images.length > 1 && (
+              <div className="grid grid-cols-4 gap-2">
+                {images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                      index === currentImageIndex 
+                        ? 'border-blue-500 ring-2 ring-blue-200' 
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <Image
+                      src={image}
+                      alt={`${product.title} ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 25vw, 10vw"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
   
             {/* Enhanced Product Details */}
             <div className="space-y-6">
