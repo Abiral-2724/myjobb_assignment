@@ -6,7 +6,7 @@ import { TrendingUp, Package, DollarSign, Star, BarChart3, PieChart, Activity } 
 import { PieChart as RechartsPieChart, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ScatterChart, Scatter, Area, AreaChart, Pie } from 'recharts';
 import Image from 'next/image';
 
-// Type definitions
+
 interface Product {
   id: number;
   title: string;
@@ -121,11 +121,13 @@ export default function ProductAnalyticsDashboard() {
       data.products.forEach((product: Product) => {
         // Categories
         categories[product.category] = (categories[product.category] || 0) + 1;
+
         
         // Brands
         if (!brands[product.brand]) {
           brands[product.brand] = {count: 0, totalPrice: 0, totalRating: 0};
         }
+
         brands[product.brand].count++;
         brands[product.brand].totalPrice += product.price;
         brands[product.brand].totalRating += product.rating;
@@ -136,6 +138,7 @@ export default function ProductAnalyticsDashboard() {
         else if (product.price <= 100) priceRanges[2].count++;
         else if (product.price <= 200) priceRanges[3].count++;
         else priceRanges[4].count++;
+
         
         // Rating distribution
         const ratingKey = Math.floor(product.rating).toString();
@@ -146,6 +149,7 @@ export default function ProductAnalyticsDashboard() {
           stockByCategory[product.category] = {totalStock: 0, count: 0, lowStock: 0};
         }
         stockByCategory[product.category].totalStock += product.stock;
+
         stockByCategory[product.category].count++;
         if (product.stock < 20) stockByCategory[product.category].lowStock++;
         
@@ -153,10 +157,13 @@ export default function ProductAnalyticsDashboard() {
         if (!discountByCategory[product.category]) {
           discountByCategory[product.category] = {totalDiscount: 0, maxDiscount: 0, count: 0, withDiscount: 0};
         }
+
         discountByCategory[product.category].totalDiscount += product.discountPercentage;
         discountByCategory[product.category].maxDiscount = Math.max(discountByCategory[product.category].maxDiscount, product.discountPercentage);
         discountByCategory[product.category].count++;
         if (product.discountPercentage > 0) discountByCategory[product.category].withDiscount++;
+
+
         
         totalRating += product.rating;
         totalValue += product.price * product.stock;
@@ -181,10 +188,12 @@ export default function ProductAnalyticsDashboard() {
         .sort((a, b) => b.count - a.count)
         .slice(0, 10);
 
+
       // Process rating distribution
       const ratingDistribution = Object.entries(ratingDist)
         .map(([rating, count]) => ({rating: `${rating} stars`, count}))
         .sort((a, b) => parseInt(a.rating) - parseInt(b.rating));
+
 
       // Process stock analysis
       const stockAnalysis = Object.entries(stockByCategory)
@@ -205,6 +214,7 @@ export default function ProductAnalyticsDashboard() {
           productsWithDiscount: data.withDiscount
         }))
         .sort((a, b) => b.avgDiscount - a.avgDiscount);
+
 
       setDashboardData({
         totalProducts: data.products.length,
@@ -258,7 +268,6 @@ export default function ProductAnalyticsDashboard() {
         
       </div>
       
-      {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -315,7 +324,6 @@ export default function ProductAnalyticsDashboard() {
 
       {/* Charts Row 1: Category and Price Distribution */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Category Distribution Pie Chart */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -347,7 +355,6 @@ export default function ProductAnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        {/* Price Range Distribution */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -372,7 +379,6 @@ export default function ProductAnalyticsDashboard() {
 
       {/* Charts Row 2: Rating Distribution and Brand Analysis */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Rating Distribution */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -419,7 +425,6 @@ export default function ProductAnalyticsDashboard() {
 
       {/* Charts Row 3: Price vs Rating Scatter and Stock Analysis */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Price vs Rating Scatter Plot */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -483,7 +488,6 @@ export default function ProductAnalyticsDashboard() {
 
       {/* Charts Row 4: Discount Analysis and Brand Performance */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Discount Analysis */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -505,7 +509,6 @@ export default function ProductAnalyticsDashboard() {
           </CardContent>
         </Card>
 
-        {/* Brand Performance (Price vs Rating) */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -544,7 +547,6 @@ export default function ProductAnalyticsDashboard() {
         </Card>
       </div>
 
-      {/* Recent Products Table */}
       <Card>
         <CardHeader>
           <CardTitle>Recent Products</CardTitle>

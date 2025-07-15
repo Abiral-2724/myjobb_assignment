@@ -20,7 +20,7 @@ export default function OTPEmail({ otp }: OTPEmailProps) {
     <Html>
       <Head />
       <Body style={main}>
-        <Preview>myjobb AI - Email Verification</Preview>
+        <Preview>Email Verification</Preview>
         <Container style={container}>
           <Section style={coverSection}>
             <Section style={imageSection}>
@@ -45,8 +45,9 @@ export default function OTPEmail({ otp }: OTPEmailProps) {
             <Hr />
           </Section>
           <Text style={footerText}>
-            This message was produced and distributed by Ass.
-            © 2025, Ass. All rights reserved.
+            This message was produced and distributed by Assignment.
+            <br />
+            © 2025, Assignment. All rights reserved.
           </Text>
         </Container>
       </Body>

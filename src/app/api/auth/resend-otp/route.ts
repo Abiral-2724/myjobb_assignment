@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     // Check if last OTP was sent less than 60 seconds ago (rate limiting)
     if (user.otp && user.otp.sentAt) {
         const timeSinceLastOTP = Date.now() - user.otp.sentAt.getTime();
-        const rateLimitDuration = 60 * 1000; // 60 seconds in milliseconds
+        const rateLimitDuration = 60 * 1000;
         
         if (timeSinceLastOTP < rateLimitDuration) {
           const timeLeft = Math.ceil((rateLimitDuration - timeSinceLastOTP) / 1000);
@@ -51,9 +51,9 @@ export async function POST(request: NextRequest) {
 
     // Generate OTP
     const otp: string = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiresAt: Date = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+    const expiresAt: Date = new Date(Date.now() + 5 * 60 * 1000); 
     const sentAt: Date = new Date();
-    // Upsert user with new OTP
+    
     await User.findOneAndUpdate(
       { email },
       {

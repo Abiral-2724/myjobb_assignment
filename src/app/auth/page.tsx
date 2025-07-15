@@ -29,7 +29,7 @@ export default function AuthPage() {
   const [success, setSuccess] = useState<string>('');
   const [resendCooldown, setResendCooldown] = useState<number>(0);
 
-  // Countdown effect
+  
   useEffect(() => {
     if (resendCooldown > 0) {
       const timer = setTimeout(() => {

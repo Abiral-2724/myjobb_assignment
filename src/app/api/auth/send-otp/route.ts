@@ -25,9 +25,9 @@ if (existingUser && existingUser.isVerified) {
 
 // Generate 6-digit OTP
     const otp: string = Math.floor(100000 + Math.random() * 900000).toString();
-    const expiresAt: Date = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
+    const expiresAt: Date = new Date(Date.now() + 5 * 60 * 1000); 
  const sentAt: Date = new Date();
-    // Update or create user
+    
     await User.findOneAndUpdate(
       { email },
       {
@@ -41,7 +41,6 @@ if (existingUser && existingUser.isVerified) {
       { upsert: true, new: true }
     );
 
-    // Send OTP email
     await sendOTPEmail(email, otp);
 
     return NextResponse.json({ message: 'OTP sent successfully' });

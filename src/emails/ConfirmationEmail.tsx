@@ -19,7 +19,7 @@ export const ConfirmationEmail = ({ email }: ConfirmationEmailProps) => (
     <Head />
     <Body style={main}>
       <Preview>
-        Welcome to myjobb AI - Your AI-powered job search companion
+        Welcome to Assignment
       </Preview>
       <Container style={container}>
        
@@ -37,11 +37,11 @@ export const ConfirmationEmail = ({ email }: ConfirmationEmailProps) => (
         <Text style={paragraph}>
           Best regards,
           <br />
-          The Ass team
+          The Assignment team
         </Text>
         <Hr style={hr} />
         <Text style={footer}>
-          © 2025 Ass. All rights reserved.
+          © 2025 Assignment. All rights reserved.
         </Text>
       </Container>
     </Body>

@@ -5,7 +5,6 @@ import User from '@/models/User';
 import jwt from 'jsonwebtoken';
 import { sendConfirmationEmail } from '@/lib/email';
 
-// Ensure environment variable is properly typed
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export async function POST(request: NextRequest) {
@@ -28,7 +27,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'OTP expired' }, { status: 400 });
     }
 
-    // Mark user as verified and remove OTP
     await User.findOneAndUpdate(
       { email },
       {
@@ -46,7 +44,7 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60, // 7 days in seconds
+      maxAge: 7 * 24 * 60 * 60, 
       path: '/',
     });
 

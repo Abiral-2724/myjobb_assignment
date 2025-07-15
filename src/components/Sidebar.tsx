@@ -28,7 +28,6 @@ export function Sidebar() {
         />
       )}
 
-      {/* Sidebar */}
       <div className={`
         fixed lg:static
         top-0 left-0 h-full
@@ -40,7 +39,7 @@ export function Sidebar() {
       `}>
        
         <div className="p-4 border-b border-gray-700">
-          <h2 className="text-xl font-bold">Ass</h2>
+          <h2 className="text-xl font-bold">Assignment</h2>
         </div>
         
         

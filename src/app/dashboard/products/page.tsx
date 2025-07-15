@@ -4,7 +4,7 @@ import ProductDetailModal from '@/components/ProductDetailModal';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-// Define interfaces for type safety
+
 interface Product {
   id: number;
   title: string;
@@ -56,7 +56,7 @@ interface Analytics {
   totalProducts: number;
 }
 
-// Simple Card components
+
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <div className={`border border-gray-200 rounded-lg shadow-sm ${className}`}>
     {children}
@@ -87,7 +87,7 @@ const CardContent = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-// Simple Table components
+
 const Table = ({ children }: { children: React.ReactNode }) => (
   <div className="overflow-x-auto">
     <table className="w-full border-collapse">
@@ -195,8 +195,7 @@ export default function ProductsPage() {
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-3xl font-bold ml-9">Products Dashboard</h1>
-      
-      {/* Analytics Cards */}
+    
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
           <CardHeader>
@@ -281,8 +280,6 @@ export default function ProductsPage() {
           </Table>
         </CardContent>
       </Card>
-
-      {/* Product Detail Modal */}
 
       {selectedProduct && (
         <ProductDetailModal
